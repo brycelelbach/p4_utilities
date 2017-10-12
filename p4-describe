@@ -1,0 +1,6 @@
+# Distributed under the Boost Software License v1.0 www.boost.org/LICENSE_1_0.txt
+#
+#! /bin/bash
+
+p4 describe -du $@
+
