@@ -1,0 +1,42 @@
+#! /bin/bash
+#
+# Copyright 2017 NVIDIA Corporation
+#
+# Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
+#
+# Author: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
+
+if [[ $# -ne 4 ]]; then
+  echo "Usage: $0 <changelist> <from-path> <to-path> <description>"
+  exit 1
+fi
+
+CHANGELIST=${1}
+FROM_PATH=${2}
+TO_PATH=${3}
+DESCRIPTION=${4}
+
+# Integrate the changelist.
+FILES=`p4 integrate ${FROM_PATH}/...@=${CHANGELIST} ${TO_PATH}/... | sed 's/#.*$//'`
+
+# Sync the location we integrated to.
+p4 sync ${TO_PATH}/...
+
+# Resolve any conflicts in the location we integrated to.
+p4 resolve ${TO_PATH}/...
+
+# Create the integration commit, using the description of the original CL with
+# the description supplied on the command line appended.
+(cat - | p4 change -i) << EOF
+Change: new
+
+Status: new
+
+Description:
+`p4-description ${CHANGELIST}`
+	${DESCRIPTION}
+
+Files:
+`echo "${FILES}" | sed 's/^/\t/'`
+EOF
+
