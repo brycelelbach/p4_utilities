@@ -1,0 +1,10 @@
+#! /bin/bash
+#
+# Copyright 2017 NVIDIA Corporation
+#
+# Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
+#
+# Author: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
+
+p4 describe -s $1 | sed '1,2d' | tr '\n' '\r' | sed 's/\r\r/\f/' | sed 's/\([^\f]*\)\f.*/\1/' | tr '\r' '\n' | tr '\f' '\n'
+
