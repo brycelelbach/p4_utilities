@@ -2,5 +2,5 @@
 #
 #! /bin/bash
 
-p4 describe -s $@ | grep '... //' | sed "s/\.\.\. //" | sed "s/#.*//"  | p4 -ztag -x - where | grep "... path " | sed "s/\.\.\. path //"
+p4 describe -s $@ | grep '... //' | sed 's/\.\.\. //' | sed 's/#.*$//' | p4 -ztag -x - where | grep '... path ' | sed 's/\.\.\. path //'
 
