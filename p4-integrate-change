@@ -12,8 +12,8 @@ if [[ $# -ne 4 ]]; then
 fi
 
 CHANGELIST=${1}
-FROM_PATH=${2}
-TO_PATH=${3}
+FROM_PATH=${2%/}
+TO_PATH=${3%/}
 DESCRIPTION=${4}
 
 # Integrate the changelist.
