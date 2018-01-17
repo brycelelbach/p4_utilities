@@ -6,7 +6,7 @@
 #
 # Author: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
 
-if [[ $# -ne 4 ]]; then
+if [[ $# -ne 3 ]]; then
   echo "Usage: $0 <changelist> <from-path> <to-path>"
   exit 1
 fi
