@@ -7,14 +7,13 @@
 # Author: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
 
 if [[ $# -ne 4 ]]; then
-  echo "Usage: $0 <changelist> <from-path> <to-path> <description>"
+  echo "Usage: $0 <changelist> <from-path> <to-path>"
   exit 1
 fi
 
 CHANGELIST=${1}
 FROM_PATH=${2%/}
 TO_PATH=${3%/}
-DESCRIPTION=${4}
 
 # Integrate the changelist.
 FILES=`p4 integrate ${FROM_PATH}/...@=${CHANGELIST} ${TO_PATH}/... | sed 's/#.*$//'`
@@ -34,7 +33,7 @@ Status: new
 
 Description:
 `p4-description ${CHANGELIST}`
-	${DESCRIPTION}
+  "Integrates ${FROM_PATH}/...@=${CHANGELIST} to ${TO_PATH}/..."
 
 Files:
 `echo "${FILES}" | sed 's/^/\t/'`
