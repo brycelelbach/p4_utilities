@@ -1,0 +1,20 @@
+#! /bin/bash
+#
+# Copyright 2017 NVIDIA Corporation
+#
+# Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
+#
+# Author: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <changelist>"
+  exit 1
+fi
+
+CHANGELIST=${1}
+
+p4 unshelve -s ${CHANGELIST} -c ${CHANGELIST}
+p4 change ${CHANGELIST} # Allow the user a chance to update the description.
+p4 shelve -d -c ${CHANGELIST}
+p4 submit -c ${CHANGELIST}
+
