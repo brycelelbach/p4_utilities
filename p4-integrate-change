@@ -24,18 +24,28 @@ p4 sync ${TO_PATH}/...
 # Resolve any conflicts in the location we integrated to.
 p4 resolve ${TO_PATH}/...
 
-# Create the integration commit, using the description of the original CL with
-# the description supplied on the command line appended.
-(cat - | p4 change -i) << EOF
+# Create the integration changelist, using the description of the original CL
+# with the description supplied on the command line appended.
+INTEGRATION_CHANGELIST=`(cat - | p4 change -i) << EOF
 Change: new
 
 Status: new
 
 Description:
-`p4-description ${CHANGELIST}`
+$(p4-description ${CHANGELIST})
 	Integrates ${FROM_PATH}/...@=${CHANGELIST} to ${TO_PATH}/...
 
 Files:
-`echo "${FILES}" | sed 's/^/\t/'`
+$(echo "${FILES}" | sed 's/^/\t/')
 EOF
+`
+
+# Extract the integration changelist number.
+INTEGRATION_CHANGELIST=`echo "${INTEGRATION_CHANGELIST}" | awk -F ' ' '{ print $2 }'`
+
+# Shelve the CL and revert it.
+p4 shelve -c ${INTEGRATION_CHANGELIST}
+p4 revert -w -c ${INTEGRATION_CHANGELIST} //...
+
+echo "Created changelist ${INTEGRATION_CHANGELIST} that integrates ${CHANGELIST} from ${FROM_PATH}/... to ${TO_PATH}/..."
 
