@@ -8,8 +8,8 @@
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <changelist>"
   echo 
-  echo "Print the tab-indented description of the specified changelist without "
-  echo "a terminating newline."
+  echo "Print the tab-indented description of the specified Perforce changelist "
+  echo "without a terminating newline."
   exit 1
 fi
 

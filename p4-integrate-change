@@ -8,11 +8,12 @@
 if [[ $# -ne 3 ]]; then
   echo "Usage: $0 <changelist> <from-path> <to-path>"
   echo 
-  echo "Create a new changelist that integrates (aka copies) the changes in the "
+  echo "Create a new changelist that integrate (aka copy) the changes in the "
   echo "specified changelist from one Perforce path to another Perforce path. "
   echo "The new changelist will have the same description as the source "
   echo "changelist, with an added note explaining where the change was "
-  echo "integrated from."
+  echo "integrated from. The path arguments should be paths in the Perforce "
+  echo "repository, not paths in your local workspace."
   exit 1
 fi
 

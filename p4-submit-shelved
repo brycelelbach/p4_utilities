@@ -9,6 +9,8 @@ if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <changelist>"
   echo 
   echo "Submit (aka commit) the specified **shelved** Perforce changelist."
+  echo "You will have the opportunity to edit the changelist description before "
+  echo "it is submitted."
   exit 1
 fi
 
