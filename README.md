@@ -20,7 +20,7 @@ This repository contains utilities to simplify basic Perforce tasks for
 
 This software is distributed under the [Boost Software License v1.0].
 
-### Prerequisites
+## Prerequisites
 
 This software is designed to work on Linux-based operating systems.
 
@@ -56,7 +56,7 @@ After you've done that, the following will install all of the requried
 sudo apt-get install python bash make git perforce-cli asciidoc docbook xmlto
 ```
 
-### Installing
+## Installing
 
 Then, you can just run `make` to build and install this software:
 
