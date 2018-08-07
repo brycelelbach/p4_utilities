@@ -29,6 +29,7 @@ This software is designed to work on Linux-based operating systems.
 | Software                            | Version  |
 | ----------------------------------- | -------- |
 | [GNU Bash]                          | 4.2      |
+| [GNU Sed]                           | 4.4      |
 | [GNU Make]                          | 4.1      |
 | [Perforce Command-Line Client (p4)] | 2017.1   |
 
@@ -80,6 +81,7 @@ export PATH="/path/to/this/checkout/:${PATH}"
 [NVIDIA's CUDA Thrust library]:             https://thrust.github.com
 [Boost Software License v1.0]:              https://boost.org/LICENSE_1_0.txt 
 [GNU Bash]:                                 https://www.gnu.org/software/bash
+[GNU Sed]:                                  https://www.gnu.org/software/sed
 [GNU Make]:                                 https://www.gnu.org/software/make
 [Perforce Helix Command-Line Client (p4)]:  https://www.perforce.com/downloads/helix-command-line-client-p4
 
