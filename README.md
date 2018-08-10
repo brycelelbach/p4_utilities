@@ -14,6 +14,7 @@ This repository contains utilities to simplify basic Perforce tasks for
 
 - `p4-describe <args...>`: Invoke the Perforce command `p4 describe` with the diff style set to unified.
 - `p4-description <changelist>`: Print the tab-indented description of the specified changelist without a terminating newline.
+- `p4-delete <changelist>`: Delete the specified changelist even if it has a shelve.
 - `p4-integrate-change <changelist> <from-path> <to-path>`: Integrate (aka copy) the specified changelist from one Perforce path to another.
 - `p4-listfiles <changelist>`: Print a scriptable list of the local paths of the files in the specified Perforce changelist.
 - `p4-submit-shelved <changelist>`: Submit the specified **shelved** Perforce changelist.
