@@ -1,6 +1,6 @@
-# Distributed under the Boost Software License v1.0 www.boost.org/LICENSE_1_0.txt
-#
 #! /bin/bash
+#
+# Distributed under the Boost Software License v1.0 www.boost.org/LICENSE_1_0.txt
 
 p4 describe -s $@ | grep '... //' | sed 's/\.\.\. //' | sed 's/#.*$//' | p4 -ztag -x - where | grep '... path ' | sed 's/\.\.\. path //'
 
