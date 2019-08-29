@@ -38,7 +38,7 @@ Change: new
 Status: new
 
 Description:
-$(p4-description ${CHANGELIST})
+$(p4-description -n ${CHANGELIST})
 
 	Integrates ${FROM_PATH}/...@=${CHANGELIST} to ${TO_PATH}/...
 

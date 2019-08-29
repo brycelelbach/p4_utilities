@@ -5,13 +5,42 @@
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-if [[ $# -ne 1 ]]; then
-  echo "Usage: $0 <changelist>"
-  echo 
-  echo "Print the tab-indented description of the specified Perforce changelist "
-  echo "without a terminating newline."
+function usage {
+  echo "Usage: $0 [flags...] <changelist>"
+  echo
+  echo "-h, -help, --help : Print this message."
+  echo "-n                : Do not output a terminating newline."
+  echo
+  echo "Print the tab-indented description of the specified Perforce changelist."
   exit 1
-fi
+}
+  
+TERMINATING_NEWLINE=1
 
-p4 describe -s $1 | sed '1,2d' | tr '\n' '\r' | sed 's/\r\r/\f/' | sed 's/\([^\f]*\)\f.*/\1/' | tr '\r' '\n' | tr '\f' '\n'
+while test ${#} != 0
+do
+  case "${1}" in
+  -h) usage ;;
+  -help) usage ;;
+  --help) usage ;;
+  -n) TERMINATING_NEWLINE=0 ;;
+  *)
+    # If CHANGELIST is already set, then we've gotten more than one positional
+    # argument, which is wrong.
+    if [ -n "${CHANGELIST}" ]
+    then
+      usage
+    fi
+    CHANGELIST="${1}"
+    ;;
+  esac
+  shift
+done
+
+p4 describe -s ${CHANGELIST} | sed '1,2d' | tr '\n' '\r' | sed 's/\r\r/\f/' | sed 's/\([^\f]*\)\f.*/\1/' | tr '\r' '\n' | tr '\f' '\n'
+
+if [ "${TERMINATING_NEWLINE:-0}" == "1" ]
+then
+  echo
+fi
 
