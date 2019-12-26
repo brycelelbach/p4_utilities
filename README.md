@@ -9,7 +9,7 @@ Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
 *Reply-To:* [Bryce Adelstein Lelbach aka wash](brycelelbach@gmail.com)
 
-This repository contains utilities to simplify basic Perforce tasks for 
+This repository contains utilities to simplify basic Perforce tasks for
   [NVIDIA's CUDA Thrust library] team:
 
 - `p4-describe <args...>`: Invoke the Perforce command `p4 describe` with the diff style set to unified.
@@ -28,12 +28,12 @@ This software is designed to work on Linux-based operating systems.
 
 **Required Software**
 
-| Software                            | Version  |
-| ----------------------------------- | -------- |
-| [GNU Bash]                          | 4.2      |
-| [GNU Sed]                           | 4.4      |
-| [GNU Make]                          | 4.1      |
-| [Perforce Command-Line Client (p4)] | 2017.1   |
+| Software                                  | Version  |
+| ----------------------------------------- | -------- |
+| [GNU Bash]                                | 4.2      |
+| [GNU Sed]                                 | 4.4      |
+| [GNU Make]                                | 4.1      |
+| [Perforce Helix Command-Line Client (p4)] | 2017.1   |
 
 To install the Perforce Command-Line Client (p4) on Debian or Ubuntu
   systems, you'll need to add their Debian package repository to your list of
@@ -81,7 +81,7 @@ export PATH="/path/to/this/checkout/:${PATH}"
 ```
 
 [NVIDIA's CUDA Thrust library]:             https://thrust.github.com
-[Boost Software License v1.0]:              https://boost.org/LICENSE_1_0.txt 
+[Boost Software License v1.0]:              https://boost.org/LICENSE_1_0.txt
 [GNU Bash]:                                 https://www.gnu.org/software/bash
 [GNU Sed]:                                  https://www.gnu.org/software/sed
 [GNU Make]:                                 https://www.gnu.org/software/make
