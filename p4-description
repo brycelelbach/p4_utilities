@@ -1,6 +1,6 @@
-#! /bin/bash
+#! /usr/bin/env bash
 #
-# Copyright (c) 2017-8 NVIDIA Corporation
+# Copyright (c) 2017-2020 NVIDIA Corporation
 # Reply-To: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
@@ -14,7 +14,7 @@ function usage {
   echo "Print the tab-indented description of the specified Perforce changelist."
   exit 1
 }
-  
+
 TERMINATING_NEWLINE=1
 
 while test ${#} != 0

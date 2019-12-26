@@ -1,13 +1,13 @@
-#! /bin/bash
+#! /usr/bin/env bash
 #
-# Copyright (c) 2017-9 NVIDIA Corporation
+# Copyright (c) 2017-2020 NVIDIA Corporation
 # Reply-To: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <changelist>"
-  echo 
+  echo
   echo "Print a scriptable list of the local paths of the files in the specified "
   echo "Perforce changelist."
   exit 1

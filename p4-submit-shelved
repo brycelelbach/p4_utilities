@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 #
 # Copyright (c) 2017-8 NVIDIA Corporation
 # Reply-To: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
@@ -7,7 +7,7 @@
 
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <changelist>"
-  echo 
+  echo
   echo "Submit (aka commit) the specified **shelved** Perforce changelist."
   echo "You will have the opportunity to edit the changelist description before "
   echo "it is submitted."
@@ -17,7 +17,7 @@ fi
 CHANGELIST=${1}
 
 p4 unshelve -s ${CHANGELIST} -c ${CHANGELIST}
-p4 change ${CHANGELIST} # Allow the user a chance to update the description.
+p4 change ${CHANGELIST} # Give the user a chance to update the description.
 p4 shelve -d -c ${CHANGELIST}
 p4 submit -c ${CHANGELIST}
 

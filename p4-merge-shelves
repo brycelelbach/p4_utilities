@@ -1,14 +1,16 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 #
-# Copyright 2019 NVIDIA Corporation
+# Copyright (c) 2017-2020 NVIDIA Corporation
+# Reply-To: Michał Dominiak <griwes@griwes.info>
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
-#
-# Author: Michał Dominiak <griwes@griwes.info>
 
 if [[ $# -lt 1 ]]; then
-    echo "Usage: $0 <changelist...>"
-    exit 1
+  echo "Usage: $0 <changelist...>"
+  echo
+  echo "Create a new shelved Perforce changelist that combines the content from "
+  echo "all the specified shelved changelists."
+  exit 1
 fi
 
 set -e
@@ -17,19 +19,19 @@ tmpdir=$(mktemp -d)
 
 for cl in $@
 do
-    p4 unshelve -f -s ${cl}
-    p4 describe -s ${cl} | grep -P '\t' >> "${tmpdir}/p4-description-body"
-    printf "\n\n" >> "${tmpdir}/p4-description-body"
+  p4 unshelve -f -s ${cl}
+  p4 describe -s ${cl} | grep -P '\t' >> "${tmpdir}/p4-description-body"
+  printf "\n\n" >> "${tmpdir}/p4-description-body"
 done
 
 p4 resolve
 
 p4 change -o | awk "
-    BEGIN {
-        RS=\"\n\t<enter description here>\"
-    }
-    NR==1 { print \$0 > \"${tmpdir}/p4-description-head\" }
-    NR==2 { print \$0 > \"${tmpdir}/p4-description-tail\" }
+  BEGIN {
+    RS=\"\n\t<enter description here>\"
+  }
+  NR==1 { print \$0 > \"${tmpdir}/p4-description-head\" }
+  NR==2 { print \$0 > \"${tmpdir}/p4-description-tail\" }
 "
 
 cat "${tmpdir}/p4-description-"{head,body,tail} | p4 change -i | tee "${tmpdir}/p4-change-output"

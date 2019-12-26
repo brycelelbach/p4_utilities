@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 #
 # Copyright (c) 2017-8 NVIDIA Corporation
 # Reply-To: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
@@ -7,7 +7,7 @@
 
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <changleist>"
-  echo 
+  echo
   echo "Unshelve a changelist."
   exit 1
 fi
