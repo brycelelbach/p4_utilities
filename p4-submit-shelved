@@ -17,6 +17,7 @@ fi
 CHANGELIST=${1}
 
 p4 unshelve -s ${CHANGELIST} -c ${CHANGELIST}
+p4 resolve //...
 p4 change ${CHANGELIST} # Give the user a chance to update the description.
 p4 shelve -d -c ${CHANGELIST}
 p4 submit -c ${CHANGELIST}
