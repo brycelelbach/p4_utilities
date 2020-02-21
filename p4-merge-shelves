@@ -38,6 +38,9 @@ cat "${tmpdir}/p4-description-"{head,body,tail} | p4 change -i | tee "${tmpdir}/
 new_cl=$(cat "${tmpdir}/p4-change-output" | cut -d ' ' -f 2)
 p4 shelve -c ${new_cl}
 
+files_to_clean=$(p4-listfiles ${new_cl})
 p4 revert //...
+p4 clean ${files_to_clean}
+
 rm -rf ${tmpdir}
 
