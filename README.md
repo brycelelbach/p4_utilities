@@ -30,6 +30,8 @@ This repository contains the following tools:
     changelist.
 - `p4-merge-shelves <changelist...>`: Merge multiple shelved changelists into a
     single new changelist.
+- `p4-which-change-synced <paths...>`: Determine the highest changelist the
+    specified paths are synced to (aka which changelist are you at).
 
 This software is distributed under the [Boost Software License v1.0].
 

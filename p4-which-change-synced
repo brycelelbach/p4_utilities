@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+#
+# Copyright (c) 2017-2020 NVIDIA Corporation
+# Reply-To: Bryce Adelstein Lelbach aka wash <brycelelbach@gmail.com>
+#
+# Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: $0 <paths...>"
+  echo
+  echo "Print the highest changelist the specified paths are synced to in your "
+  echo "Perforce workspace (aka which changelist are you at)."
+  echo
+  echo "For directories, you need to append `/...` to the end of the path."
+  exit 1
+fi
+
+# Based on: https://community.perforce.com/s/article/3458
+p4 cstat ${@} | awk 'BEGIN { change = 0 } /\.\.\. change / { candidate = $3 } /\.\.\. status / { if( $3 != "need" && candidate > change ) { change = candidate } } END { print change }'
+
