@@ -20,8 +20,8 @@ This repository contains the following tools:
     diff style set to unified.
 - `p4-description <changelist>`: Print the tab-indented description of the
     specified changelist.
-- `p4-delete <changelist>`: Delete the specified changelist even if it has a
-    shelve.
+- `p4-delete-shelved <changelist...>`: Delete the specified changelist(s) even
+    if they have shelves.
 - `p4-integrate-change <changelist> <from-path> <to-path>`: Integrate (aka
     copy) the specified changelist from one Perforce path to another.
 - `p4-listfiles <changelist>`: Print a scriptable list of the local paths of

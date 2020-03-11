@@ -5,13 +5,16 @@
 #
 # Distributed under the Boost Software License v1.0 (boost.org/LICENSE_1_0.txt)
 
-if [[ $# -ne 1 ]]; then
-  echo "Usage: $0 <changelist>"
+if [[ ${#} -eq 0 ]]; then
+  echo "Usage: ${0} <changelist...>"
   echo
-  echo "Delete the specified changelist, including its shelve if it exists."
+  echo "Delete the specified changelist(s), including shelves if they exist."
   exit 1
 fi
 
-p4 shelve -d -c $1 > /dev/null 2>&1
-p4 change -d $1
+for cl in ${@}
+do
+  p4 shelve -d -c ${cl} > /dev/null 2>&1
+  p4 change -d ${cl}
+done
 
