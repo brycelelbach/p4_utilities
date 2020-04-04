@@ -27,7 +27,9 @@ FILES=`p4 integrate ${FROM_PATH}/...@=${CHANGELIST} ${TO_PATH}/... | sed 's/#.*$
 # Sync the location we integrated to.
 p4 sync ${TO_PATH}/...
 
-# Resolve any conflicts in the location we integrated to.
+# Resolve anything that has no conflicts automatically.
+p4 resolve -am ${TO_PATH}/...
+# Prompt the user to resolve anything with conflicts.
 p4 resolve ${TO_PATH}/...
 
 # Create the integration changelist, using the description of the original CL
